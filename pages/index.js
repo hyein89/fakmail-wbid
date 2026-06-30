@@ -48,13 +48,20 @@ export default function Home() {
   const [copyStatus, setCopyStatus] = useState('Salin');
   const [showCustom, setShowCustom] = useState(false);
   const [customInput, setCustomInput] = useState('');
-  
-  // State baru untuk melacak pesan mana yang sedang DIBUKA
   const [expandedEmailId, setExpandedEmailId] = useState(null);
 
+  // --- LOGIKA BARU: Membuat email format mof07824 (3 huruf + 5 angka) ---
   const generateRandom = () => {
-    const random = Math.random().toString(36).substring(2, 10);
-    const newEmail = `${random}@${config.domain}`;
+    const letters = 'abcdefghijklmnopqrstuvwxyz';
+    let randomLetters = '';
+    for (let i = 0; i < 3; i++) {
+      randomLetters += letters.charAt(Math.floor(Math.random() * letters.length));
+    }
+    
+    // Menghasilkan angka acak dari 10000 sampai 99999 (pasti 5 digit)
+    const randomNumbers = Math.floor(10000 + Math.random() * 90000); 
+    
+    const newEmail = `${randomLetters}${randomNumbers}@${config.domain}`;
     saveToStorage(newEmail);
   };
 
@@ -64,7 +71,7 @@ export default function Home() {
     setInbox([]); 
     setShowCustom(false);
     setCustomInput('');
-    setExpandedEmailId(null); // Tutup semua pesan yang terbuka saat ganti email
+    setExpandedEmailId(null);
   };
 
   const handleCopy = () => {
@@ -84,12 +91,11 @@ export default function Home() {
     if (!isSilent) setLoading(false);
   };
 
-  // Fungsi untuk Buka/Tutup Pesan
   const toggleEmail = (id) => {
     if (expandedEmailId === id) {
-      setExpandedEmailId(null); // Kalau diklik lagi, tutup
+      setExpandedEmailId(null);
     } else {
-      setExpandedEmailId(id); // Buka pesan yang diklik
+      setExpandedEmailId(id);
     }
   };
 
@@ -104,7 +110,7 @@ export default function Home() {
     return () => clearInterval(interval);
   }, [email]);
 
-  return (
+  return (  
     <div className="flat-ui-container">
             <Head>
         {/* Judul & Viewport */}
