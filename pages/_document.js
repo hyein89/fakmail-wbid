@@ -4,10 +4,10 @@ export default function Document() {
   return (
     <Html lang="id">
       <Head>
-        {/* Google Font: Jost */}
+        {/* Google Font: Exo 2 (Updated dari Jost) */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
-        <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
 
         {/* Material Icons (Tetap kita pertahankan untuk ikon UI) */}
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
